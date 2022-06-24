@@ -1,12 +1,12 @@
 GO
 	CREATE TABLE Aluno
 	(
-			AlunoId		   INT		   NOT NULL IDENTITY(1,1) CONSTRAINT PK_Aluno_AlunoId PRIMARY KEY (AlunoId)
-		,	Nome		   VARCHAR(30) NOT NULL
-		,	DataNascimento DATE		   NOT NULL
-		,	Matricula	   VARCHAR(10)
-		,	DateModified   DATETIME	   NOT NULL DEFAULT GETDATE()
-		,	rowguid		   UNIQUEIDENTIFIER NOT NULL DEFAULT (NEWID())
+			AlunoId	       INT		NOT NULL IDENTITY(1,1) CONSTRAINT PK_Aluno_AlunoId PRIMARY KEY (AlunoId)
+		,	Nome	       VARCHAR(30)      NOT NULL
+		,	DataNascimento DATE		NOT NULL
+		,	Matricula      VARCHAR(10)
+		,	DateModified   DATETIME	        NOT NULL DEFAULT GETDATE()
+		,	rowguid	       UNIQUEIDENTIFIER NOT NULL DEFAULT (NEWID())
 	)
 GO
 	CREATE TRIGGER [dbo].[Tr_Aluno_AutoMatricula]
@@ -30,11 +30,11 @@ GO
 GO
 	CREATE TABLE Disciplina
 	(
-			DisciplinaId INT			  NOT NULL IDENTITY(1,1) CONSTRAINT PK_Disciplina_DisciplinaId PRIMARY KEY (DisciplinaId)
-		,	Nome		 VARCHAR(30)	  NOT NULL
-		,	Ementa		 VARCHAR(255)
-		,	DateModified DATETIME		  NOT NULL DEFAULT GETDATE()
-		,	rowguid		 UNIQUEIDENTIFIER NOT NULL DEFAULT (NEWID())
+			DisciplinaId INT	      NOT NULL IDENTITY(1,1) CONSTRAINT PK_Disciplina_DisciplinaId PRIMARY KEY (DisciplinaId)
+		,	Nome	     VARCHAR(30)      NOT NULL
+		,	Ementa	     VARCHAR(255)
+		,	DateModified DATETIME	      NOT NULL DEFAULT GETDATE()
+		,	rowguid	     UNIQUEIDENTIFIER NOT NULL DEFAULT (NEWID())
 	)
 GO
 	CREATE TRIGGER [dbo].[tr_Disciplina_DateModified]
@@ -48,11 +48,11 @@ GO
 GO
 	CREATE TABLE DisciplinasMatriculadas
 	(
-			DisciplinasMatriculadasId INT			   NOT NULL UNIQUE IDENTITY(1,1)
-		,	AlunoId					  INT			   NOT NULL CONSTRAINT FK_DisciplinasMatriculadas_Aluno_AlunoId FOREIGN KEY REFERENCES Aluno(AlunoId)
-		,	DisciplinaId			  INT			   NOT NULL CONSTRAINT FK_DisciplinasMatriculadas_Disciplina_DisciplinaId FOREIGN KEY REFERENCES Disciplina(DisciplinaId)
-		,	DateModified			  DATETIME		   NOT NULL DEFAULT GETDATE()
-		,	rowguid					  UNIQUEIDENTIFIER NOT NULL DEFAULT (NEWID())
+			DisciplinasMatriculadasId INT		   NOT NULL UNIQUE IDENTITY(1,1)
+		,	AlunoId			  INT		   NOT NULL CONSTRAINT FK_DisciplinasMatriculadas_Aluno_AlunoId FOREIGN KEY REFERENCES Aluno(AlunoId)
+		,	DisciplinaId		  INT		   NOT NULL CONSTRAINT FK_DisciplinasMatriculadas_Disciplina_DisciplinaId FOREIGN KEY REFERENCES Disciplina(DisciplinaId)
+		,	DateModified		  DATETIME	   NOT NULL DEFAULT GETDATE()
+		,	rowguid			  UNIQUEIDENTIFIER NOT NULL DEFAULT (NEWID())
 			CONSTRAINT PK_AlunoId_DisciplinaId PRIMARY KEY (AlunoId, DisciplinaId)
 	)
 GO
