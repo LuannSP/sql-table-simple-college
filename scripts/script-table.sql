@@ -71,7 +71,7 @@ GO
 		BEGIN
 			RETURN
 				(
-				SELECT YEAR(GETDATE()) - (YEAR(DataNascimento))
+				SELECT DATEDIFF(YEAR, DataNascimento, GETDATE())
 				FROM Aluno
 				WHERE AlunoId = @AlunoId
 				)
