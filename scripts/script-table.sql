@@ -1,4 +1,8 @@
 GO
+	CREATE DATABASE Faculdade
+GO
+	USE Faculdade
+GO
 	CREATE TABLE Aluno
 	(
 			AlunoId	       INT		NOT NULL IDENTITY(1,1) CONSTRAINT PK_Aluno_AlunoId PRIMARY KEY (AlunoId)
